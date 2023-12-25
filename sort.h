@@ -3,6 +3,8 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
+
 /**
  * struct listint_s - Doubly linked list node
  *
@@ -21,5 +23,8 @@ typedef struct listint_s
 /*------printing function------*/
 void print_array(const int *, size_t);
 void print_list(const listint_t *);
+
+/*------SORTING FUNCTION-------*/
+void bubble_sort(int *arr, size_t size);
 
 #endif
