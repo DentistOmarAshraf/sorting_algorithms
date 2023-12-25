@@ -29,4 +29,10 @@ void bubble_sort(int *, size_t);
 void insertion_sort_list(listint_t **);
 void selection_sort(int *, size_t);
 
+/*-------MergeSort headers------*/
+void merge_sort(int *, size_t);
+void merge_rec(int*, size_t, size_t);
+void merge_srt(int*, size_t, size_t, size_t);
+
+
 #endif
