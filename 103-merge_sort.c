@@ -8,6 +8,8 @@
  */
 void merge_sort(int *arr, size_t size)
 {
+	if (!arr || !size)
+		return;
 	merge_rec(arr, 0, size - 1);
 }
 
