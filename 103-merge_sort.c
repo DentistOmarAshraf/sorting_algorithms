@@ -1,9 +1,23 @@
 #include "sort.h"
 
+/**
+ * merge_sort - Function Rapper
+ * @arr: array
+ * @size: size_t
+ * Return: None
+ */
 void merge_sort(int *arr, size_t size)
 {
 	merge_rec(arr, 0, size - 1);
 }
+
+/**
+ * merge_rec - Recursion function
+ * @arr: array
+ * @l: left index
+ * @r: right index
+ * Return: None
+ */
 
 void merge_rec(int *arr, size_t l, size_t r)
 {
@@ -17,6 +31,13 @@ void merge_rec(int *arr, size_t l, size_t r)
 		merge_srt(arr, l, mid, r);
 	}
 }
+/**
+ * pr_ar - helper function for printing array
+ * @arr: array
+ * @l: left index
+ * @r: right index
+ * Return: None
+ */
 void pr_ar(int *arr, size_t l, size_t r)
 {
 	size_t i;
@@ -29,41 +50,54 @@ void pr_ar(int *arr, size_t l, size_t r)
 	}
 	printf("\n");
 }
-
+/**
+ * merge_srt - main function to sort array
+ * @arr: array
+ * @l: left index
+ * @m: medium
+ * @r: right
+ * Return: None
+ */
 void merge_srt(int *arr, size_t l, size_t m, size_t r)
 {
 	size_t l_size = m - l + 1;
 	size_t r_size = r - m;
-	int l_arr[l_size], r_arr[r_size];
+	int *copy;
 	size_t i, j, k;
+
+	copy = malloc(sizeof(int) * (l_size + r_size));
+	if (!copy)
+		return;
 
 	printf("Merging...\n");
 	for (i = 0 ; i < l_size ; i++)
-		l_arr[i] = arr[i + l];
+		copy[i] = arr[i + l];
 	printf("[left]: ");
-	print_array(l_arr, l_size);
+	pr_ar(copy, 0, l_size - 1);
 
-	for (i = 0 ; i < r_size ; i++)
-		r_arr[i] = arr[i + m + 1];
+	for (j = 0 ; j < r_size ; j++)
+	{
+		copy[i] = arr[j + m + 1];
+		i++;
+	}
 	printf("[right]: ");
-	print_array(r_arr, r_size);
+	pr_ar(copy, l_size, r_size + l_size - 1);
 
-	for (i = 0, j = 0, k = l; k <= r ; k++)
+	for (i = 0, j = l_size, k = l; k <= r ; k++)
 	{
 		if ((i < l_size) &&
-				((j >= r_size) || (l_arr[i] < r_arr[j])))
+				((j >= r_size + l_size) || (copy[i] < copy[j])))
 		{
-			arr[k] = l_arr[i];
+			arr[k] = copy[i];
 			i++;
 		}
 		else
 		{
-			arr[k] = r_arr[j];
+			arr[k] = copy[j];
 			j++;
 		}
 	}
 	printf("[Done]: ");
 	pr_ar(arr, l, r);
+	free(copy);
 }
-
-		
