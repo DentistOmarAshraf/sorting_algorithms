@@ -4,7 +4,6 @@ listint_t *create_listint(const int *arr, size_t size)
 {
 	listint_t *list;
 	listint_t *node;
-	int *tmp;
 
 	list = NULL;
 	while (size--)
@@ -12,12 +11,11 @@ listint_t *create_listint(const int *arr, size_t size)
 		node = malloc(sizeof(listint_t));
 		if (!node)
 			return (NULL);
-		tmp = (int *)&node->n;
-		*tmp = arr[size];
+		node->n = arr[size];
 		node->next = list;
 		node->prev = NULL;
 		list = node;
-		if(list->next)
+		if (list->next)
 			list->next->prev = list;
 	}
 	return (list);
@@ -32,6 +30,10 @@ int main(void)
 	list = create_listint(arr, n);
 	if (!list)
 		return (1);
+	print_list(list);
+	printf("\n");
+	insertion_sort_list(&list);
+	printf("\n");
 	print_list(list);
 
 	return (0);
