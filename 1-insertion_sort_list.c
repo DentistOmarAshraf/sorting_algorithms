@@ -8,7 +8,7 @@
 
 void insertion_sort_list(listint_t **list)
 {
-	listint_t *ptr_i, *ptr_j, *temp, *next;
+	listint_t *ptr_i, *ptr_j, *temp;
 	bool swap;
 
 	if ((*list)->prev == NULL && (*list)->next == NULL)
