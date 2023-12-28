@@ -11,7 +11,7 @@ void insertion_sort_list(listint_t **list)
 	listint_t *ptr_i, *ptr_j, *temp;
 	bool swap;
 
-	if (!(*list) || ((*list)->prev == NULL && (*list)->next == NULL))
+	if (list == NULL || *list == NULL)
 		return;
 	do {
 	swap = false;
