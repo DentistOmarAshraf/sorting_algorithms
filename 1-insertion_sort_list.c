@@ -1,44 +1,50 @@
 #include "sort.h"
 
 /**
- * insertion_sort_list - sorting list by insertion sorting algo
- * @list: pointer of list
+ * insertion_sort_list - it's Not insertion sort !!
+ * @list: pointer of pointer of list
  * Return: None
  */
 
 void insertion_sort_list(listint_t **list)
 {
-	listint_t *ptr1, *ptr2, *key, *chkpt;
+	listint_t *ptr_i, *ptr_j, *temp, *next;
+	bool swap;
 
-	ptr1 = (*list)->next;
-	while (ptr1)
+	if ((*list)->prev == NULL && (*list)->next == NULL)
 	{
-		key = ptr1;
-		ptr2 = ptr1->prev;
-		ptr1 = ptr1->next;
-		while (ptr2 && ptr2->n > key->n)
-			ptr2 = ptr2->prev;
-		if (!ptr2)
-		{
-			chkpt = *list;
-			key->prev->next = key->next;
-			if (key->next)
-				key->next->prev = key->prev;
-			chkpt->prev = key;
-			key->next = chkpt;
-			key->prev = NULL;
-			*list = key;
-			print_list(*list);
-			continue;
-		}
-		key->prev->next = key->next;
-		if (key->next)
-			key->next->prev = key->prev;
-		key->next = ptr2->next;
-		if (key->next)
-			key->next->prev = key;
-		key->prev = ptr2;
-		ptr2->next = key;
 		print_list(*list);
+		return;
 	}
+	do {
+	swap = false;
+	ptr_i = *list;
+	while (ptr_i)
+	{
+		ptr_j = *list;
+		while (ptr_j->next)
+		{
+			temp = ptr_j->next;
+			if (ptr_j->n > ptr_j->next->n)
+			{
+				ptr_j->next = temp->next;
+				if (temp->next)
+					temp->next->prev = ptr_j;
+				temp->next = ptr_j;
+				temp->prev = ptr_j->prev;
+				if (ptr_j->prev)
+					ptr_j->prev->next = temp;
+				ptr_j->prev = temp;
+				*list = temp;
+				while ((*list)->prev)
+					(*list) = (*list)->prev;
+				print_list(*list);
+				swap = true;
+				break;
+			}
+			ptr_j = ptr_j->next;
+		}
+		ptr_i = ptr_i->next;
+	}
+	} while (swap);
 }
