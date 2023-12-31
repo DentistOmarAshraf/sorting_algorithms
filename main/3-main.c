@@ -2,7 +2,7 @@
 
 int main(void)
 {
-	int arr[] = {19, 48, 99, 71, 13, 52, 96, 73, 86, 7};
+	int arr[] = {98, 98, 98, 98, 98, 98, 98, 98, 98, 98, 98, 98, 98, 98, 98, 98, 98, 98, 98, 98};
 	size_t n = sizeof(arr) / sizeof(arr[0]);
 
 	print_array(arr, n);
