@@ -21,7 +21,7 @@ void swap(int *x, int *y)
 
 void quick_sort(int *arr, size_t size)
 {
-	if (!arr || size > 1)
+	if (!arr || size < 1)
 		return;
 	quick_rec(arr, size, 0, size - 1);
 }
@@ -71,7 +71,7 @@ int partition(int *arr, size_t size, int low, int high)
 		}
 	}
 	i++;
-	swap(&arr[i], &arr[high]);
+	swap(&arr[i] , &arr[high]);
 	if (i != j)
 		print_array(arr, size);
 	return (i);
