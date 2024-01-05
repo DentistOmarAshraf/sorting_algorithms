@@ -34,5 +34,11 @@ void merge_sort(int *, size_t);
 void merge_rec(int*, size_t, size_t);
 void merge_srt(int*, size_t, size_t, size_t);
 
+/*-------QuickSort headers------*/
+void swap(int *, int *);
+void quick_sort(int *, size_t);
+void quick_rec(int *, size_t, int, int);
+int partition(int *, size_t, int, int);
+
 
 #endif
